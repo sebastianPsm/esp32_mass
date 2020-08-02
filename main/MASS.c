@@ -63,7 +63,7 @@ void mass_findNN(tMass * h, float * x, float * y, float * dist) {
     unsigned idx;
 
     //Normalize
-    zNorm(x, h->n, h->x);
+    memcpy(h->x, x, sizeof(float) * h->n);
     zNorm(y, h->m, h->y);
 
     //Compute the cumulative sums
@@ -83,9 +83,6 @@ void mass_findNN(tMass * h, float * x, float * y, float * dist) {
     //y Stats
     float sumy = h->cy[h->m];
     float sumy2 = h->cy2[h->m];
-    float meany = sumy/h->m;
-    float sigmay = (sumy2/h->m) - meany*meany;
-    sigmay = sqrt(sigmay);
 
     // validated
 
@@ -95,10 +92,12 @@ void mass_findNN(tMass * h, float * x, float * y, float * dist) {
         float sumx = h->cx[idx + h->m] - h->cx[idx]; // Sum of x of every subsequences of length m
         float sumx2 = h->cx2[idx + h->m] - h->cx2[idx]; // Sum of x^2 of every subsequences of length m
         float meanx = sumx/h->m; // Mean of every subsequences of length m
-        float sigmax = sqrt((sumx2 / h->m) - meanx*meanx); // Standard deviaiton of every subsequences of length m
+        float sigmax2 = sumx2 / h->m - meanx * meanx;
+        float sigmax = sqrt(sigmax2); // Standard deviaiton of every subsequences of length m
 
-        float c = ( sumxy - h->m*meanx*meany ) / ( h->m*sigmax*sigmay );
-        dist[idx] = sqrt(2 * h->m * (1-c));
+        float c = (sumx2 - 2 * sumx*meanx + h->m*meanx*meanx) / sigmax2 - 2 * (h->z[h->m+1+idx] - sumy * meanx) / sigmax + sumy2;
+        dist[idx] = sqrt(c);
+        //dist[idx] = 1-dist[idx] / (2 * h->m); // If you want Pearson's correlation coefficients instead of Euclidean
     }
 }
 void zNorm(const float * x, int n, float * y) {
@@ -126,12 +125,12 @@ void multiply_x_and_y(tMass * h, float * z) {
     fft_execute(h->fft_plan_Y);
 
     for(unsigned idx = 0 ; idx < 2*h->n; idx++) {
-        h->fft_plan_Z->input[REAL] = h->fft_plan_X->output[REAL]*h->fft_plan_Y->output[REAL] - h->fft_plan_X->output[IMAG]*h->fft_plan_Y->output[IMAG];
-        h->fft_plan_Z->input[IMAG] = h->fft_plan_X->output[IMAG]*h->fft_plan_Y->output[REAL] - h->fft_plan_X->output[REAL]*h->fft_plan_Y->output[IMAG];
+        h->fft_plan_Z->input[REAL] = h->fft_plan_X->output[REAL] * h->fft_plan_Y->output[REAL] + h->fft_plan_X->output[IMAG] * -h->fft_plan_Y->output[IMAG];
+        h->fft_plan_Z->input[IMAG] = h->fft_plan_X->output[IMAG] * h->fft_plan_Y->output[REAL] + h->fft_plan_X->output[REAL] *  h->fft_plan_Y->output[IMAG];
     }
 
     fft_execute(h->fft_plan_Z);
 
-    for(unsigned idx = 0; idx < 2*h->n; idx++)
-        z[idx] = h->fft_plan_Z->output[REAL]/(2*h->n);    
+    for (unsigned idx = 0; idx < 2 * h->n; idx++)
+      z[idx] = h->fft_plan_Z->output[REAL];
 }
