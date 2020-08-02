@@ -1,9 +1,13 @@
-ESP-IDF template app
+Mueen's Algorithm for Similarity Search" (aka MASS) for ESP32
 ====================
 
-This is a template application to be used with [Espressif IoT Development Framework](https://github.com/espressif/esp-idf).
+## Dependencies
+- [esp32-fft](https://github.com/fakufaku/esp32-fft), simple fft, ifft lib
 
-Please check [ESP-IDF docs](https://docs.espressif.com/projects/esp-idf/en/latest/get-started/index.html) for getting started instructions.
+## Comparison
+The following figure shows an example time series, query and results from two MASS implementations: This (esp32-mass) and the Python mass_ts module.
+
+![Result](https://github.com/sebastianPsm/esp32_mass/raw/master/9C1DC361-6EDD-4E39-B8A2-A0EFB299D044.png)
 
 *Code in this repository is in the Public Domain (or CC0 licensed, at your option.)
 Unless required by applicable law or agreed to in writing, this
