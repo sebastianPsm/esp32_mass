@@ -9,6 +9,15 @@ The following figure shows an example time series, query and results from two MA
 
 ![Result](https://github.com/sebastianPsm/esp32_mass/raw/master/9C1DC361-6EDD-4E39-B8A2-A0EFB299D044.png)
 
+## Todos
+- [ ] esp32 benchmark with different sizes
+- [ ] implementing the other MASS versions (mainly [MASS_V2](https://www.cs.unm.edu/~mueen/MASS_V2.m))
+- [ ] Quick start documentation
+- [ ] Highlite some projects that uses MASS on a esp32
+
+## Acknowledgment
+Acknowledging the work of Mueen and his team: Abdullah Mueen, Yan Zhu, Michael Yeh, Kaveh Kamgar, Krishnamurthy Viswanathan, Chetan Kumar Gupta, Eamonn Keogh (2015), The Fastest Similarity Search Algorithm for Time Series Subsequences under Euclidean Distance, URL: [http://www.cs.unm.edu/~mueen/FastestSimilaritySearch.html]
+
 *Code in this repository is in the Public Domain (or CC0 licensed, at your option.)
 Unless required by applicable law or agreed to in writing, this
 software is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR
