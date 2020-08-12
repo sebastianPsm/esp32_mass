@@ -63,14 +63,19 @@ Executing action: all (aliases: build)
 Running cmake in directory c:\users\sebastian\desktop\esp32_mass\build
 Executing "cmake -G Ninja -DPYTHON_DEPS_CHECKED=1 -DESP_PLATFORM=1 --warn-uninitialized -DCCACHE_ENABLE=1 c:\users\sebastian\desktop\esp32_mass"...
 Warn about uninitialized values.
--- Found Git: C:/Program Files/Git/cmd/git.exe (found version "2.24.0.windows.2")
--- IDF_TARGET not set, using default target: esp32
--- ccache will be used for faster recompilation
--- The C compiler identification is GNU 8.2.0
--- The CXX compiler identification is GNU 8.2.0
--- The ASM compiler identification is GNU
 
 ...
+
+[100/100] Generating binary image from built executable
+esptool.py v3.0-dev
+Generated C:/Users/Sebastian/Desktop/esp32_mass/build/bootloader/bootloader.bin
+[932/932] Generating binary image from built executable
+esptool.py v3.0-dev
+Generated C:/Users/Sebastian/Desktop/esp32_mass/build/app-mass-example.bin
+
+Project build complete. To flash, run this command:
+C:\Users\Sebastian\.espressif\python_env\idf4.2_py3.8_env\Scripts\python.exe ..\esp-idf-2\components\esptool_py\esptool\esptool.py -p (PORT) -b 460800 --before default_reset --after hard_reset --chip esp32  write_flash --flash_mode dio --flash_size detect --flash_freq 40m 0x1000 build\bootloader\bootloader.bin 0x8000 build\partition_table\partition-table.bin 0x10000 build\app-mass-example.bin
+or run 'idf.py -p (PORT) flash'
 ```
 
 ## Todos
