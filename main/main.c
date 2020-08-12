@@ -1,5 +1,8 @@
+#include <stdlib.h>
 #include <stdio.h>
+#include <string.h>
 #include <esp_log.h>
+#include <esp_timer.h>
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 
@@ -13,23 +16,10 @@ unsigned m = 128;
 static float q[] = { -0.4804, -0.4736, -0.4628, -0.4488, -0.4336, -0.4172, -0.4020, -0.3880, -0.3732, -0.3508, -0.3300, -0.3096, -0.2904, -0.2728, -0.2532, -0.2348, -0.2156, -0.2008, -0.1864, -0.1744, -0.1624, -0.1504, -0.1440, -0.1356, -0.1268, -0.1200, -0.1164, -0.1168, -0.1184, -0.1200, -0.1316, -0.1356, -0.1372, -0.1416, -0.1488, -0.1632, -0.1724, -0.1784, -0.1792, -0.1840, -0.1976, -0.2084, -0.2164, -0.2320, -0.2496, -0.2660, -0.2828, -0.2936, -0.3004, -0.3104, -0.3200, -0.3280, -0.3300, -0.3308, -0.3332, -0.3340, -0.3388, -0.3448, -0.3476, -0.3488, -0.3416, -0.3400, -0.3400, -0.3472, -0.3516, -0.3496, -0.3504, -0.3580, -0.3580, -0.3568, -0.3564, -0.3560, -0.3588, -0.3652, -0.3672, -0.3648, -0.3600, -0.3624, -0.3632, -0.3624, -0.3556, -0.3524, -0.3508, -0.3476, -0.3460, -0.3444, -0.3412, -0.3372, -0.3348, -0.3344, -0.3328, -0.3324, -0.3316, -0.3324, -0.3332, -0.3324, -0.3312, -0.3308, -0.3324, -0.3352, -0.3392, -0.3436, -0.3440, -0.3452, -0.3464, -0.3476, -0.3492, -0.3512, -0.3544, -0.3576, -0.3608, -0.3652, -0.3724, -0.3768, -0.3792, -0.3816, -0.3840, -0.3840, -0.3856, -0.3880, -0.3924, -0.3972, -0.4004, -0.4028, -0.4068, -0.4140, -0.4212, -0.4300 };
 
 void find_motifs(void * data) {
-    unsigned idx;
+    tMass * mass;
     float * dist = (float *) calloc(n-m+1, sizeof(float));
-    
-    // Print ts
-    printf("ts: ");
-    for (unsigned idx = 0; idx < n; idx++)
-      printf("%f, ", ts[idx]);
-    printf("\n");
      
-    // Print query
-    printf("query: ");
-    for (unsigned idx = 0; idx < m; idx++)
-      printf("%f, ", q[idx]);
-    printf("\n");
-    
-    
-    tMass * mass = mass_init(n, m);
+    mass = mass_init(n, m);
     mass_findNN(mass, ts, q, dist);
     mass_terminate(&mass);
     
@@ -41,9 +31,27 @@ void find_motifs(void * data) {
     
     free(dist);
 
+    // Measure time
+    unsigned int ns[] = {128, 256, 512, 1024, 2048};
+    unsigned int ms[] = {4, 8, 16, 32, 64, 128};
+    for(unsigned idx = 0; idx < 5; idx++) {
+      for(unsigned jdx = 0; jdx < 6; jdx++) {
+        mass = mass_init(ns[idx], ms[idx]);
+
+        int64_t start = esp_timer_get_time();
+        mass_findNN(mass, ts, q, dist);
+        int64_t end = esp_timer_get_time();
+
+        printf("n: %d, m: %d, t: %lld\n", ns[idx], ms[idx], end-start);
+
+        mass_terminate(&mass);
+      }
+    }
+    
+
     while(1);
 }
 
 void app_main(void) {
-    xTaskCreate(find_motifs, "find_motifs", 8*1014, NULL, 6, NULL);
+    xTaskCreate(find_motifs, "find_motifs", 16*1014, NULL, 6, NULL);
 }
