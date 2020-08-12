@@ -41,7 +41,7 @@ Unpacking objects: 100% (48/48), done.
 #>
 ```
 
-1. Change into components directory
+1. Change into components directory and clone fft repo
 ```console
 #> cd components
 
