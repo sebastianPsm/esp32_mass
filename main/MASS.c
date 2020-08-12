@@ -103,8 +103,6 @@ void mass_findNN(tMass * h, float * x, float * y, float * dist) {
     float sumy = h->cy[h->m];
     float sumy2 = h->cy2[h->m];
 
-    // validated
-
     //The Search
     for(idx = 0 ; idx < (h->n - h->m + 1) ; idx++) {
         //float sumxy = h->z[h->m - 1 + idx];
