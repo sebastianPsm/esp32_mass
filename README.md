@@ -3,14 +3,14 @@ Mueen's Algorithm for Similarity Search" (aka MASS) for ESP32
 
 [Mueen's algorithm for similarity search](https://www.cs.unm.edu/~mueen/FastestSimilaritySearch.html) (MASS) is a nearest neighbor algorithm for time series data. Because of the size and speed MASS is ideal for microcontroller use. The shown C implementation in this repo of MASS is directly derived from [here](https://www.cs.unm.edu/~mueen/MASS.cpp) and works also on other platforms for sure.
 
+## Comparison
+The following figure shows an example time series data (10 sec acceleration data), a query (~ 4 sec acceleration data) and results from two MASS implementations: This (esp32-mass) and the Python mass_ts module.
+
+![Result](https://github.com/sebastianPsm/esp32_mass/raw/master/img/plot.png)
+
 ## Dependencies
 - [esp32-fft](https://github.com/fakufaku/esp32-fft), simple fft, ifft lib
 - sqrt(), cosf() and sinf(): Typically from libm, automatically added by the esp32 SDK
-
-## Comparison
-The following figure shows an example time series, query and results from two MASS implementations: This (esp32-mass) and the Python mass_ts module.
-
-![Result](https://github.com/sebastianPsm/esp32_mass/raw/master/img/plot.png)
 
 ## Quick start
 1. Check if esp32 SDK is functional
