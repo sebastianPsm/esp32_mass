@@ -57,6 +57,8 @@ Unpacking objects: 100% (60/60), done.
 5. Change back to repo root
 ```console
 #> cd ..
+
+#>
 ```
 
 6. Build
