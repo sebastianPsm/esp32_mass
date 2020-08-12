@@ -76,6 +76,8 @@ Generated C:/Users/Sebastian/Desktop/esp32_mass/build/app-mass-example.bin
 Project build complete. To flash, run this command:
 C:\Users\Sebastian\.espressif\python_env\idf4.2_py3.8_env\Scripts\python.exe ..\esp-idf-2\components\esptool_py\esptool\esptool.py -p (PORT) -b 460800 --before default_reset --after hard_reset --chip esp32  write_flash --flash_mode dio --flash_size detect --flash_freq 40m 0x1000 build\bootloader\bootloader.bin 0x8000 build\partition_table\partition-table.bin 0x10000 build\app-mass-example.bin
 or run 'idf.py -p (PORT) flash'
+
+#>
 ```
 
 ## Todos
