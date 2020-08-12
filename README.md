@@ -58,7 +58,19 @@ Unpacking objects: 100% (60/60), done.
 
 6. Build
 ```console
-#>
+#> idf.py build
+Executing action: all (aliases: build)
+Running cmake in directory c:\users\sebastian\desktop\esp32_mass\build
+Executing "cmake -G Ninja -DPYTHON_DEPS_CHECKED=1 -DESP_PLATFORM=1 --warn-uninitialized -DCCACHE_ENABLE=1 c:\users\sebastian\desktop\esp32_mass"...
+Warn about uninitialized values.
+-- Found Git: C:/Program Files/Git/cmd/git.exe (found version "2.24.0.windows.2")
+-- IDF_TARGET not set, using default target: esp32
+-- ccache will be used for faster recompilation
+-- The C compiler identification is GNU 8.2.0
+-- The CXX compiler identification is GNU 8.2.0
+-- The ASM compiler identification is GNU
+
+...
 ```
 
 ## Todos
