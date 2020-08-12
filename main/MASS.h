@@ -15,6 +15,7 @@ extern "C" {
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include <assert.h>
 #include <math.h>
 #include <fft.h>
@@ -22,29 +23,9 @@ extern "C" {
 struct tMassStruct;
 typedef struct tMassStruct tMass;
 
-struct tMassStruct {
-    float * x;
-    unsigned n;
-
-    float * y;
-    float * dist;
-    unsigned m;
-
-    float *z;
-    float *cx;
-    float *cx2;
-    float *cy;
-    float *cy2;
-
-    fft_config_t * fft_plan_X;
-    fft_config_t * fft_plan_Y;
-    fft_config_t * fft_plan_Z;
-};
-
 tMass * mass_init(unsigned n, unsigned m);
 void mass_terminate(tMass ** h);
 void mass_findNN(tMass * h, float * x, float * y, float * dist);
-void multiply_x_and_y(tMass * h, float * z);
 
 #ifdef __cplusplus
 }

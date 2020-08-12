@@ -8,6 +8,25 @@
 //
 #include "MASS.h"
 
+struct tMassStruct {
+    float * x;
+    unsigned n;
+
+    float * y;
+    float * dist;
+    unsigned m;
+
+    float *z;
+    float *cx;
+    float *cx2;
+    float *cy;
+    float *cy2;
+
+    fft_config_t * fft_plan_X;
+    fft_config_t * fft_plan_Y;
+    fft_config_t * fft_plan_Z;
+};
+
 #define REAL (2*idx+0)
 #define IMAG (2*idx+1)
 
@@ -88,7 +107,7 @@ void mass_findNN(tMass * h, float * x, float * y, float * dist) {
 
     //The Search
     for(idx = 0 ; idx < (h->n - h->m + 1) ; idx++) {
-        float sumxy = h->z[h->m - 1 + idx];
+        //float sumxy = h->z[h->m - 1 + idx];
         float sumx = h->cx[idx + h->m] - h->cx[idx]; // Sum of x of every subsequences of length m
         float sumx2 = h->cx2[idx + h->m] - h->cx2[idx]; // Sum of x^2 of every subsequences of length m
         float meanx = sumx/h->m; // Mean of every subsequences of length m

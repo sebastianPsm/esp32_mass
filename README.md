@@ -7,13 +7,13 @@ Mueen's Algorithm for Similarity Search" (aka MASS) for ESP32
 ## Comparison
 The following figure shows an example time series, query and results from two MASS implementations: This (esp32-mass) and the Python mass_ts module.
 
-![Result](https://github.com/sebastianPsm/esp32_mass/raw/master/9C1DC361-6EDD-4E39-B8A2-A0EFB299D044.png)
+![Result](https://github.com/sebastianPsm/esp32_mass/raw/master/img/plot.png)
 
 ## Todos
 - [ ] esp32 benchmark with different sizes
 - [ ] implementing the other MASS versions (mainly [MASS_V2](https://www.cs.unm.edu/~mueen/MASS_V2.m))
 - [ ] Quick start documentation
-- [ ] Highlite some projects that uses MASS on a esp32
+- [ ] Highlite some projects that uses MASS on an esp32
 
 ## Acknowledgment
 Acknowledging the work of Mueen and his team: Abdullah Mueen, Yan Zhu, Michael Yeh, Kaveh Kamgar, Krishnamurthy Viswanathan, Chetan Kumar Gupta, Eamonn Keogh (2015), The Fastest Similarity Search Algorithm for Time Series Subsequences under Euclidean Distance, URL: [http://www.cs.unm.edu/~mueen/FastestSimilaritySearch.html]
