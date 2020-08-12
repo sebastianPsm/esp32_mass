@@ -38,10 +38,8 @@ Unpacking objects: 100% (48/48), done.
 #>
 ```
 
-4. Create components directory and download dependency
+1. Change into components directory
 ```console
-#> mkdir components
-
 #> cd components
 
 #> git clone https://github.com/fakufaku/esp32-fft.git
@@ -62,10 +60,10 @@ Unpacking objects: 100% (60/60), done.
 ```console
 #>
 ```
+
 ## Todos
 - [ ] esp32 benchmark with different sizes
 - [ ] implementing the other MASS versions (mainly [MASS_V2](https://www.cs.unm.edu/~mueen/MASS_V2.m))
-- [ ] Quick start documentation
 - [ ] Highlite some projects that uses MASS on an esp32
 
 ## Acknowledgment
