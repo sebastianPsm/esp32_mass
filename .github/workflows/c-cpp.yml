@@ -19,6 +19,15 @@ jobs:
       with:
         repository: fakufaku/esp32-fft
         path: esp32_mass/components
+    - name: ZIP dir
+      uses: nguyenquyhy/zip-release@v0.3.0
+      with:
+        filename: res.zip
+    - name: Upload build artiface
+      uses: actions/upload-artifact@v2
+      with:
+        name: my-artifact
+        path: res.zip
     - name: ESP8266-RTOS-SDK (IDF Style) Build
       uses: nsfilho/esp8266-rtos-sdk@v2
       with:
