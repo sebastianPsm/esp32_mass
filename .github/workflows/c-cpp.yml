@@ -12,7 +12,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
+    - name: Checkout esp32_mass repo
+      uses: actions/checkout@v2
+    - name: Checkout fakufaku/esp32-fft
+      uses: actions/checkout@v2.3.2
+      repository: https://github.com/fakufaku/esp32-fft.git
+      working-directory: components      
     - name: ESP8266-RTOS-SDK (IDF Style) Build
       uses: nsfilho/esp8266-rtos-sdk@v2
       with:
