@@ -19,10 +19,5 @@ jobs:
       with:
         repository: fakufaku/esp32-fft
         path: components/esp32-fft
-    - name: Upload build artiface
-      uses: actions/upload-artifact@v2
-      with:
-        name: preBuild
-        path: .
     - name: esp-idf build
       uses: sebastianPsm/esp-idf-ci-action@1
