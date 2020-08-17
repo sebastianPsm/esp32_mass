@@ -25,4 +25,4 @@ jobs:
         name: preBuild
         path: .
     - name: ESP32-RTOS-SDK (IDF Style) Build
-      uses: sebastianPsm/esp32-ci-env-action@_0
+      uses: sebastianPsm/esp32-ci-env-action@_1
