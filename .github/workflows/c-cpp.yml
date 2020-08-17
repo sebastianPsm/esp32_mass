@@ -26,3 +26,5 @@ jobs:
         path: .
     - name: esp-idf build
       uses: sebastianPsm/esp-idf-ci-action@1
+      with:
+        makearg: idf.py build
