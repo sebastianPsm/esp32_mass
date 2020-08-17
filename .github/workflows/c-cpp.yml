@@ -26,10 +26,3 @@ jobs:
         path: .
     - name: esp-idf build
       uses: sebastianPsm/esp-idf-ci-action@1
-      with:
-        makearg: ./ ls > log.txt
-    - name: Upload log artiface
-      uses: actions/upload-artifact@v2
-      with:
-        name: log.txt
-        path: log.txt
