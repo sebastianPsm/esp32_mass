@@ -90,7 +90,7 @@ or run 'idf.py -p (PORT) flash'
 ## Todos
 - [ ] esp32 benchmark with different sizes
 - [ ] implementing the other MASS versions (mainly [MASS_V2](https://www.cs.unm.edu/~mueen/MASS_V2.m))
-- [ ] Highlite some projects that uses MASS on an esp32
+- [ ] Highlight some projects that uses MASS on an esp32
 
 ## Acknowledgment
 Acknowledging the work of Mueen and his team: Abdullah Mueen, Yan Zhu, Michael Yeh, Kaveh Kamgar, Krishnamurthy Viswanathan, Chetan Kumar Gupta, Eamonn Keogh (2015), The Fastest Similarity Search Algorithm for Time Series Subsequences under Euclidean Distance, URL: [http://www.cs.unm.edu/~mueen/FastestSimilaritySearch.html]
