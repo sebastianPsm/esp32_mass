@@ -10,6 +10,8 @@ The following figure shows an example time series data (~ 20 sec acceleration da
 
 ![result](https://github.com/sebastianPsm/esp32_mass/raw/master/img/plot.png)
 
+Main difference between esp32_mass and the other two MASS implementations (MATLAB and the python mass_ts module) is, that esp32_mass uses single-precision floating point numbers instead of double-precision.
+
 ## Benchmark
 The following benchmark was executed on a ESP32 with different n (256, 512, 1024) and m (4, 8, 16, 32, 64, 128).
 
@@ -75,6 +77,7 @@ or run 'idf.py -p (PORT) flash'
 ## Todos
 - [ ] implementing the other MASS versions (mainly [MASS_V2](https://www.cs.unm.edu/~mueen/MASS_V2.m))
 - [ ] Highlight some projects that uses MASS on an esp32
+- [ ] Improve performance by using optimized fft for ESP32
 
 ## Acknowledgment
 Acknowledging the work of Mueen and his team: Abdullah Mueen, Yan Zhu, Michael Yeh, Kaveh Kamgar, Krishnamurthy Viswanathan, Chetan Kumar Gupta, Eamonn Keogh (2015), The Fastest Similarity Search Algorithm for Time Series Subsequences under Euclidean Distance, URL: [http://www.cs.unm.edu/~mueen/FastestSimilaritySearch.html]
