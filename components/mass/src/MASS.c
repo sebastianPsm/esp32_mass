@@ -3,8 +3,7 @@
 // Acknowledging the work of Mueen and his team:
 // Abdullah Mueen, Yan Zhu, Michael Yeh, Kaveh Kamgar, Krishnamurthy Viswanathan, Chetan Kumar Gupta and Eamonn Keogh (2015), The Fastest Similarity Search Algorithm for Time Series Subsequences under Euclidean Distance, URL: http://www.cs.unm.edu/~mueen/FastestSimilaritySearch.html
 //
-// This code runs on a ESP32 with n=1024 and m=128 in ~13 ms
-//                                n=2048           in ~26 ms
+// This code runs on a ESP32 with n=1024 and m=128 in ~25 ms
 //
 #include <MASS.h>
 
