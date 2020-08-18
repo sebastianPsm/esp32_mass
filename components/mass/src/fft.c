@@ -57,8 +57,10 @@ fft_config_t *fft_init(int size, fft_type_t type, fft_direction_t direction, flo
   fft_config_t *config = (fft_config_t *)malloc(sizeof(fft_config_t));
 
   // Check if the size is a power of two
-  if ((size & (size-1)) != 0)  // tests if size is a power of two
+  if ((size & (size-1)) != 0){  // tests if size is a power of two
+    free(config);
     return NULL;
+  }
 
   // start configuration
   config->flags = 0;
@@ -431,7 +433,14 @@ void split_radix_fft(float *x, float *y, int n, int stride, float *twiddle_facto
   split_radix_fft(x + 3 * stride, y + n + n / 2, n / 4, 4 * stride, twiddle_factors, 4 * tw_stride);
 
   // Stitch together the output
-  float u1r, u1i, u2r, u2i, x1r, x1i, x2r, x2i;
+  float u1r;
+  float u1i;
+  float u2r;
+  float u2i;
+  float x1r;
+  float x1i;
+  float x2r;
+  float x2i;
   float t;
 
   // We can save a few multiplications in the first step
