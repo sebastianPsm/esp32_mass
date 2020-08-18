@@ -6,7 +6,7 @@
 // This code runs on a ESP32 with n=1024 and m=128 in ~13 ms
 //                                n=2048           in ~26 ms
 //
-#include "MASS.h"
+#include <MASS.h>
 
 struct tMassStruct {
     float * x;

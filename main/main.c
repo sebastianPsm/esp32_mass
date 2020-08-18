@@ -6,7 +6,7 @@
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 
-#include "MASS.h"
+#include <MASS.h>
 
 #define TAG "mass"
 
@@ -31,18 +31,20 @@ void find_motifs(void * data) {
     
     free(dist);
 
-    // Measure time
-    unsigned int ns[] = {128, 256, 512, 1024, 2048};
+    // Benchmark
+    printf("Benchmark: \n");
+    printf("n, m, t[us]\n");
+    unsigned int ns[] = {256, 512, 1024};
     unsigned int ms[] = {4, 8, 16, 32, 64, 128};
-    for(unsigned idx = 0; idx < 5; idx++) {
+    for(unsigned idx = 0; idx < 3; idx++) {
       for(unsigned jdx = 0; jdx < 6; jdx++) {
-        mass = mass_init(ns[idx], ms[idx]);
+        mass = mass_init(ns[idx], ms[jdx]);
 
         int64_t start = esp_timer_get_time();
         mass_findNN(mass, ts, q, dist);
         int64_t end = esp_timer_get_time();
 
-        printf("n: %d, m: %d, t: %lld\n", ns[idx], ms[idx], end-start);
+        printf("%u, %u, %lld\n", ns[idx], ms[jdx], (long long) end-start);
 
         mass_terminate(&mass);
       }

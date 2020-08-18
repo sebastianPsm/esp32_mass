@@ -6,12 +6,17 @@ Mueen's Algorithm for Similarity Search" (aka MASS) for ESP32
 ![C/C++ CI](https://github.com/sebastianPsm/esp32_mass/workflows/C/C++%20CI/badge.svg?branch=master) ![code quality](https://github.com/sebastianPsm/esp32_mass/workflows/code%20quality/badge.svg)
 
 ## Comparison
-The following figure shows an example time series data (~ 20 sec acceleration data), a query (~ 2.5 sec acceleration data) and results from two MASS implementations: This (esp32-mass) and the Python mass_ts module.
+The following figure shows an example time series data (~ 20 sec acceleration data), a query (~ 2.5 sec acceleration data) and results from two MASS implementations: This (esp32-mass), the Python mass_ts module and the official MATLAB code from MASS_V1 (findNN).
 
 ![result](https://github.com/sebastianPsm/esp32_mass/raw/master/img/plot.png)
 
+## Benchmark
+The following benchmark was executed on a ESP32 with different n (256, 512, 1024) and m (4, 8, 16, 32, 64, 128).
+
+![result](https://github.com/sebastianPsm/esp32_mass/raw/master/img/benchmark.png)
+
 ## Dependencies
-- [esp32-fft](https://github.com/fakufaku/esp32-fft), simple fft, ifft lib
+- [esp32-fft](https://github.com/fakufaku/esp32-fft), simple fft, ifft lib --> files located in components/mass (fft.h, fft.c)
 - sqrt(), cosf() and sinf(): Typically from libm, automatically added by the esp32 SDK
 
 ## Quick start
@@ -43,27 +48,7 @@ Unpacking objects: 100% (48/48), done.
 #>
 ```
 
-1. Change into components directory and clone fft repo
-```console
-#> cd components
-
-#> git clone https://github.com/fakufaku/esp32-fft.git
-Cloning into 'esp32-fft'...
-remote: Enumerating objects: 60, done.
-remote: Total 60 (delta 0), reused 0 (delta 0), pack-reused 60
-Unpacking objects: 100% (60/60), done.
-
-#>
-```
-
-5. Change back to repo root
-```console
-#> cd ..
-
-#>
-```
-
-6. Build
+4. Build
 ```console
 #> idf.py build
 Executing action: all (aliases: build)
@@ -88,7 +73,6 @@ or run 'idf.py -p (PORT) flash'
 ```
 
 ## Todos
-- [ ] esp32 benchmark with different sizes
 - [ ] implementing the other MASS versions (mainly [MASS_V2](https://www.cs.unm.edu/~mueen/MASS_V2.m))
 - [ ] Highlight some projects that uses MASS on an esp32
 

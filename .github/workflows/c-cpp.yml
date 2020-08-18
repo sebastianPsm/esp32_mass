@@ -14,10 +14,5 @@ jobs:
     steps:
     - name: Checkout esp32_mass repo
       uses: actions/checkout@v2
-    - name: Checkout fakufaku/esp32-fft
-      uses: actions/checkout@v2.3.2
-      with:
-        repository: fakufaku/esp32-fft
-        path: components/esp32-fft
     - name: esp-idf build
       uses: sebastianPsm/esp-idf-ci-action@1
